@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const emailHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
   return (
     <div className="flex flex-col justify-center h-screen bg-background-300">
       <h1 className="text-5xl font-semibold text-lightwhite-100 mx-4 my-3">
@@ -16,21 +27,26 @@ function SignIn() {
           type="email"
           name="email"
           id="email"
-          className="bg-background-200 mx-4 my-2 p-3 rounded-md w-3/4"
+          onChange={emailHandler}
+          className="bg-background-200 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <input
           placeholder="Password"
           type="password"
           name="password"
           id="password"
-          className="bg-background-200 mx-4 my-2 p-3 rounded-md w-3/4"
+          onChange={passwordHandler}
+          className="bg-background-200 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
         />
-        <NavLink to="/signup" className={"mx-4 my-1 text-lightwhite-100 font-light"}>
+        <NavLink
+          to="/register"
+          className={"mx-4 my-1 text-lightwhite-100 font-light"}
+        >
           Don't have an account?
         </NavLink>
         <button
           type="button"
-          className="bg-blue-400 font-medium w-fit p-3 rounded-md mx-4 my-3"
+          className="bg-blue-400 font-medium w-fit p-3 rounded-md mx-4 my-3 hover:scale-110 hover:ease-in-out"
         >
           Sign In
         </button>
