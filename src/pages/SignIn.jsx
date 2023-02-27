@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 import { supabase } from "../supabaseClient";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const toast = useToast();
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -15,6 +17,7 @@ function SignIn() {
   };
 
   const signInHandler = () => {
+
     async function signInWithEmail(){
         try{
             const {data, error} = await supabase.auth.signInWithPassword({
@@ -22,9 +25,20 @@ function SignIn() {
                 password: password
             });
             if(error) throw error;
-            console.log(data);
+            toast({
+              title: "Signed in! 🙌",
+              status: "success",
+              duration: 2000,
+              isClosable: false
+            })
         }catch(error){
-            console.log(error);
+            toast({
+              title: "Error 🤔",
+              description: `${error}`,
+              status: 'error',
+              duration: 2500,
+              isClosable: true
+            })
         }
     }
     signInWithEmail();
