@@ -14,6 +14,12 @@ function Register() {
     setPassword(event.target.value);
   };
 
+  // const registerHandler = () => {
+  //   async function registerWithEmail(){
+
+  //   }
+  // };
+
   return (
     <div className="flex flex-col justify-center h-screen bg-background-300">
       <h1 className="text-5xl font-semibold text-lightwhite-100 mx-4 my-3">

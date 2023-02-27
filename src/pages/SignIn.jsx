@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,22 @@ function SignIn() {
   const passwordHandler = (event) => {
     setPassword(event.target.value);
   };
+
+  const signInHandler = () => {
+    async function signInWithEmail(){
+        try{
+            const {data, error} = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            if(error) throw error;
+            console.log(data);
+        }catch(error){
+            console.log(error);
+        }
+    }
+    signInWithEmail();
+  }
 
   return (
     <div className="flex flex-col justify-center h-screen bg-background-300">
@@ -46,6 +63,7 @@ function SignIn() {
         </NavLink>
         <button
           type="button"
+          onClick={signInHandler}
           className="bg-blue-400 font-medium w-fit p-3 rounded-md mx-4 my-3 hover:scale-110 hover:ease-in-out"
         >
           Sign In
