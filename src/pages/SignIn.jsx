@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { supabase } from "../supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const toast = useToast();
+  const navigate = useNavigate();
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -30,6 +32,7 @@ function SignIn() {
           duration: 2000,
           isClosable: false,
         });
+        navigate("/jobs");
       } catch (error) {
         toast({
           title: "Error 🤔",

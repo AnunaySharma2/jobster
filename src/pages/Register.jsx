@@ -1,13 +1,14 @@
 import { useToast } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const toast = useToast();
+  const navigate = useNavigate();
 
   const emailHandler = (event) => {
     setEmail(event.target.value);
@@ -32,6 +33,7 @@ function Register() {
           duration: 2000,
           isClosable: false,
         });
+        navigate("/");
       } catch (error) {
         toast({
           title: "Error 🤔",
