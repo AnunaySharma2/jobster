@@ -1,6 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from "react";
+import Job from "../components/Job";
 import { supabase } from "../supabaseClient";
 
 function JobListing() {
@@ -29,15 +30,30 @@ function JobListing() {
     }
   }
 
-  return <div className="bg-background-300 h-screen">
-    {
-      jobs.map((job) => (
-        <div key={job.id}>
-          <h1 className="text-lightwhite-100">{job.Company}</h1>
-        </div>
-      ))
-    }
-  </div>;
+  return (
+    <div className="bg-background-300 h-screen p-3">
+      <h1 className="text-lightwhite-100 font-black text-5xl p-3">
+        Latest Jobs
+      </h1>
+      <div className="flex flex-col">
+        {jobs.map((job) => (
+          <div key={job.id}>
+            {/* <h1 className="text-lightwhite-100">{job.Company}</h1>
+             */}
+            <Job
+              company={job.Company}
+              role={job.Role}
+              stipend={job.Stipend}
+              link={job.Link}
+              likes={job.Likes}
+              dislikes={job.Dislikes}
+              created_at={job.created_at}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default JobListing;
