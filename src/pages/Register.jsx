@@ -30,16 +30,16 @@ function Register() {
           description: "Check for email confirmation",
           status: "success",
           duration: 2000,
-          isClosable: false
-        })
+          isClosable: false,
+        });
       } catch (error) {
         toast({
           title: "Error 🤔",
           description: `${error}`,
           status: "error",
           duration: 2000,
-          isClosable: false
-        })
+          isClosable: false,
+        });
       }
     }
     registerWithEmail();

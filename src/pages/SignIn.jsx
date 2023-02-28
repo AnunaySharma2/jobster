@@ -17,32 +17,31 @@ function SignIn() {
   };
 
   const signInHandler = () => {
-
-    async function signInWithEmail(){
-        try{
-            const {data, error} = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-            if(error) throw error;
-            toast({
-              title: "Signed in! 🙌",
-              status: "success",
-              duration: 2000,
-              isClosable: false
-            })
-        }catch(error){
-            toast({
-              title: "Error 🤔",
-              description: `${error}`,
-              status: 'error',
-              duration: 2500,
-              isClosable: true
-            })
-        }
+    async function signInWithEmail() {
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        });
+        if (error) throw error;
+        toast({
+          title: "Signed in! 🙌",
+          status: "success",
+          duration: 2000,
+          isClosable: false,
+        });
+      } catch (error) {
+        toast({
+          title: "Error 🤔",
+          description: `${error}`,
+          status: "error",
+          duration: 2500,
+          isClosable: true,
+        });
+      }
     }
     signInWithEmail();
-  }
+  };
 
   return (
     <div className="flex flex-col justify-center h-screen bg-background-300">

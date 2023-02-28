@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import { ChakraProvider } from "@chakra-ui/react";
+import JobListing from "./pages/JobListing";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/jobs",
+    element: <JobListing />,
   },
 ]);
 
