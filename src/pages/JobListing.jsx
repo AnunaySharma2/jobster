@@ -38,8 +38,6 @@ function JobListing() {
       <div className="flex flex-col">
         {jobs.map((job) => (
           <div key={job.id}>
-            {/* <h1 className="text-lightwhite-100">{job.Company}</h1>
-             */}
             <Job
               company={job.Company}
               role={job.Role}
