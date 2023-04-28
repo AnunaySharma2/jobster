@@ -1,3 +1,4 @@
+import '../global.css';
 import { useToast } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from "react";
@@ -31,8 +32,8 @@ function JobListing() {
   }
 
   return (
-    <div className="bg-background-300 h-screen p-3">
-      <h1 className="text-lightwhite-100 font-black text-5xl p-3">
+    <div className="h-screen p-3">
+      <h1 className="text-lightwhite-100 font-black text-5xl p-3 mx-3">
         Latest Jobs
       </h1>
       <div className="flex flex-col">

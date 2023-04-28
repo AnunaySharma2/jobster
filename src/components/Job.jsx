@@ -10,7 +10,7 @@ function Job({ company, role, stipend, link, likes, dislikes, created_at }) {
   }
 
   return (
-    <div className="m-3 card p-4 rounded-lg sm:w-3/4 lg:w-1/3 bg-background-200 z-10 text-primary-content drop-shadow-xl">
+    <div className="m-3 card p-4 rounded-lg sm:w-3/4 lg:w-1/3 bg-background-300 z-10 text-primary-content drop-shadow-3xl">
       <div className="card-body flex flex-row justify-between">
         <h2 className="text-3xl text-pink-400 font-bold my">{company}</h2>
         <p className="text-xl text-blue-400 font-semibold my-1">{role}</p>
