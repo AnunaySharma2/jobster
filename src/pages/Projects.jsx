@@ -110,7 +110,7 @@ function Projects() {
             description={project.description}
             livelink={project.livelink}
             github={project.github}
-            email={project.email}
+            email={project.user_email}
             created_at={project.created_at}
           />
         ))}

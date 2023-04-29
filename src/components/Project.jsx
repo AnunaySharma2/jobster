@@ -30,17 +30,25 @@ function Project({
           </h2>
         </CardHeader>
         <CardBody>
-          <p className="px-2 text-lg text-clouds-500 ">{description}</p>
+          <p className="px-2 py-1 text-lg text-clouds-500 ">{description}</p>
+          <p className="px-2 py-1 font-semibold text-concrete-500">Created by {email}</p>
         </CardBody>
         <CardFooter>
           <div className="flex flex-row justify-between p-2 w-full">
-            <a target="_blank" className="font-bold text-silver-500" href={livelink}>
+            <a
+              target="_blank"
+              className="font-bold text-silver-500"
+              href={livelink}
+            >
               Link to Project
             </a>
-            <a target="_blank" className="font-bold text-silver-500" href={github}>
+            <a
+              target="_blank"
+              className="font-bold text-silver-500"
+              href={github}
+            >
               Github
             </a>
-            <p className="font-bold text-silver-500">{email}</p>
             <p className="px-2 text-lg text-clouds-500 font-light">
               {getCreatedDate(created_at)}
             </p>
