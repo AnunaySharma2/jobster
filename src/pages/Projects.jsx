@@ -23,40 +23,44 @@ function Projects() {
   const [email, setEmail] = useState("");
 
   const session = supabase.auth.getSession();
-  session.then((data) => setEmail(data.data.session.user.email)).catch((err) => console.log(err));
+  session
+    .then((data) => setEmail(data.data.session.user.email))
+    .catch((err) => console.log(err));
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const submitHandler = async () => {
-      const {data, error} = await supabase
+    const { data, error } = await supabase
       .from("Projects")
       .insert([
-        {projectname: name,
-        techstack: techStack,
-        description: desc,
-        livelink: link,
-        github: github,
-        user_email: email}
+        {
+          projectname: name,
+          techstack: techStack,
+          description: desc,
+          livelink: link,
+          github: github,
+          user_email: email,
+        },
       ]);
-      if(data){
-        console.log(data);
-      }else{
-        console.log(error); 
-      }
-  }
+    if (data) {
+      console.log(data);
+    } else {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="h-screen p-3">
       <div className="flex">
-        <h1 className="text-lightwhite-100 font-black text-5xl p-3 mx-3">
-          Projects
-        </h1>
         <NavLink
           to="/jobs"
-          className={"text-lightgrey-100 font-black text-5xl p-3 mx-3"}
+          className={"text-wetasphalt-500 font-black text-5xl p-3 mx-3"}
         >
           Latest Jobs
         </NavLink>
+        <h1 className="text-sunflower-500 font-black text-5xl p-3 mx-3">
+          Projects
+        </h1>
       </div>
       <button
         onClick={onOpen}

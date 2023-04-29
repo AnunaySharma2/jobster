@@ -47,8 +47,8 @@ function SignIn() {
   };
 
   return (
-    <div className="flex flex-col justify-center h-screen bg-background-300">
-      <h1 className="text-5xl font-semibold text-lightwhite-100 mx-4 my-3">
+    <div className="flex flex-col justify-center h-screen">
+      <h1 className="text-5xl font-black text-sunflower-500 mx-4 my-3">
         Sign In
       </h1>
       <h2 className="text-xl text-lightwhite-100 mx-4 my-2">
@@ -61,7 +61,7 @@ function SignIn() {
           name="email"
           id="email"
           onChange={emailHandler}
-          className="bg-background-200 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <input
           placeholder="Password"
@@ -69,7 +69,7 @@ function SignIn() {
           name="password"
           id="password"
           onChange={passwordHandler}
-          className="bg-background-200 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <NavLink
           to="/register"
@@ -80,7 +80,7 @@ function SignIn() {
         <button
           type="button"
           onClick={signInHandler}
-          className="bg-blue-400 font-medium w-fit p-3 rounded-md mx-4 my-3 hover:scale-110 hover:ease-in-out"
+          className="bg-clouds-500 font-bold w-fit p-3 rounded-md mx-4 my-3 hover:scale-110 hover:ease-in-out"
         >
           Sign In
         </button>

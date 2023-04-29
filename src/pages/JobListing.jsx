@@ -1,5 +1,5 @@
 import "../global.css";
-import { useToast } from "@chakra-ui/react";
+import { SimpleGrid, useToast } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import Job from "../components/Job";
@@ -35,31 +35,37 @@ function JobListing() {
   return (
     <div className="h-screen p-3">
       <div className="flex">
-        <h1 className="text-lightwhite-100 font-black text-5xl p-3 mx-3">
+        <h1 className="text-sunflower-500 font-black text-5xl p-3 mx-3">
           Latest Jobs
         </h1>
         <NavLink
           to="/projects"
-          className={"text-lightgrey-100 font-black text-5xl p-3 mx-3"}
+          className={"text-wetasphalt-500 font-black text-5xl p-3 mx-3"}
         >
           Projects
         </NavLink>
       </div>
-      <div className="flex flex-col">
+      <SimpleGrid
+        paddingTop={"5"}
+        paddingLeft={"4"}
+        paddingRight={"4"}
+        paddingBottom={"5"}
+        spacing={"7"}
+        templateColumns={"repeat(auto-fill, minmax(300px, 1fr))"}
+      >
         {jobs.map((job) => (
-          <div key={job.id}>
-            <Job
-              company={job.Company}
-              role={job.Role}
-              stipend={job.Stipend}
-              link={job.Link}
-              likes={job.Likes}
-              dislikes={job.Dislikes}
-              created_at={job.created_at}
-            />
-          </div>
+          <Job
+            key={job.id}
+            company={job.Company}
+            role={job.Role}
+            stipend={job.Stipend}
+            link={job.Link}
+            likes={job.Likes}
+            dislikes={job.Dislikes}
+            created_at={job.created_at}
+          />
         ))}
-      </div>
+      </SimpleGrid>
     </div>
   );
 }

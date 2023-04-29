@@ -48,8 +48,8 @@ function Register() {
   };
 
   return (
-    <div className="flex flex-col justify-center h-screen bg-background-300">
-      <h1 className="text-5xl font-semibold text-lightwhite-100 mx-4 my-3">
+    <div className="flex flex-col justify-center h-screen ">
+      <h1 className="text-5xl font-black text-sunflower-500 mx-4 my-3">
         Register
       </h1>
       <h2 className="text-xl text-lightwhite-100 mx-4 my-2">
@@ -62,7 +62,7 @@ function Register() {
           name="email"
           id="email"
           onChange={emailHandler}
-          className="bg-background-200 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <input
           placeholder="Password"
@@ -70,7 +70,7 @@ function Register() {
           name="password"
           id="password"
           onChange={passwordHandler}
-          className="bg-background-200 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <NavLink to="/" className={"mx-4 my-1 text-lightwhite-100"}>
           Already have an account?
@@ -78,7 +78,7 @@ function Register() {
         <button
           type="button"
           onClick={registerHandler}
-          className="bg-blue-400 font-medium w-fit p-3 rounded-md mx-4 my-3 hover:scale-110 hover:ease-in-out"
+          className="bg-clouds-500 font-bold w-fit p-3 rounded-md mx-4 my-3 hover:scale-110 hover:ease-in-out"
         >
           Register
         </button>
