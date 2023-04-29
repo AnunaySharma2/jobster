@@ -26,6 +26,9 @@ module.exports = {
         },
         lightsltate: {
           100: "#252327"
+        },
+        lightgrey: {
+          100: "#616161"
         }
       }
     },

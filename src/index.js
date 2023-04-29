@@ -3,9 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignIn from "./pages/SignIn";
+import '@fortawesome/fontawesome-free/css/all.css';
 import Register from "./pages/Register";
 import { ChakraProvider } from "@chakra-ui/react";
 import JobListing from "./pages/JobListing";
+import Projects from "./pages/Projects";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/jobs",
     element: <JobListing />,
+  },
+  {
+    path: "/projects",
+    element: <Projects/>
   },
 ]);
 

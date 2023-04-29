@@ -1,8 +1,9 @@
-import '../global.css';
+import "../global.css";
 import { useToast } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import Job from "../components/Job";
+import { NavLink } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 function JobListing() {
@@ -33,9 +34,17 @@ function JobListing() {
 
   return (
     <div className="h-screen p-3">
-      <h1 className="text-lightwhite-100 font-black text-5xl p-3 mx-3">
-        Latest Jobs
-      </h1>
+      <div className="flex">
+        <h1 className="text-lightwhite-100 font-black text-5xl p-3 mx-3">
+          Latest Jobs
+        </h1>
+        <NavLink
+          to="/projects"
+          className={"text-lightgrey-100 font-black text-5xl p-3 mx-3"}
+        >
+          Projects
+        </NavLink>
+      </div>
       <div className="flex flex-col">
         {jobs.map((job) => (
           <div key={job.id}>
