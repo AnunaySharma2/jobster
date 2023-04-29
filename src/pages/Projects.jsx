@@ -1,61 +1,24 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalFooter,
-  ModalBody,
-  SimpleGrid,
-  ModalCloseButton,
-  useToast
-} from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import { SimpleGrid, useToast } from "@chakra-ui/react";
 import { supabase } from "../supabaseClient";
 import Project from "../components/Project";
+import Modal from "../components/Modal";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
-  const [name, setName] = useState("");
-  const [techStack, setTechStack] = useState("");
-  const [desc, setDesc] = useState("");
-  const [link, setLink] = useState("");
-  const [github, setGithub] = useState("");
-  const [email, setEmail] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   const toast = useToast();
-
-  const session = supabase.auth.getSession();
-  session
-    .then((data) => setEmail(data.data.session.user.email))
-    .catch((err) => console.log(err));
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const submitHandler = async () => {
-    const { data, error } = await supabase
-      .from("Projects")
-      .insert([
-        {
-          projectname: name,
-          techstack: techStack,
-          description: desc,
-          livelink: link,
-          github: github,
-          user_email: email,
-        },
-      ]);
-    if (data) {
-      console.log(data);
-    } else {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     getProjects();
   }, []);
+
+  function toggleModal() {
+    setModalVisible(!modalVisible);
+  }
 
   async function getProjects() {
     try {
@@ -89,7 +52,9 @@ function Projects() {
         </h1>
       </div>
       <button
-        onClick={onOpen}
+        onClick={() => {
+          setModalVisible(!modalVisible);
+        }}
         className="fixed font-bold text-lg text-midnightblue-500 bottom-5 right-5 rounded-full bg-sunflower-500 p-4"
       >
         Add project
@@ -115,7 +80,8 @@ function Projects() {
           />
         ))}
       </SimpleGrid>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      {modalVisible && <Modal toggleModal={toggleModal}/>}
+      {/* <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <h1 className="text-4xl font-bold text-clouds-500 p-5">Add Project</h1>
@@ -182,7 +148,7 @@ function Projects() {
             </button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

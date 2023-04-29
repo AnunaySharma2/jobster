@@ -59,7 +59,9 @@ module.exports = {
           500: "#8E44AD"
         },
         midnightblue: {
-          500: "#1a242e"
+          500: "#1a242e",
+          800: "#16202a",
+          900: "#111820"
         },
         sunflower: {
           500: "#F1C40F"
