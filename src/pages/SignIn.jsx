@@ -61,7 +61,7 @@ function SignIn() {
           name="email"
           id="email"
           onChange={emailHandler}
-          className="bg-wetasphalt-500 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-clouds-500 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <input
           placeholder="Password"
@@ -69,11 +69,11 @@ function SignIn() {
           name="password"
           id="password"
           onChange={passwordHandler}
-          className="bg-wetasphalt-500 text-lightwhite-100 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-clouds-500 mx-4 my-2 p-3 rounded-md w-3/4"
         />
         <NavLink
           to="/register"
-          className={"mx-4 my-1 text-lightwhite-100 font-light"}
+          className={"mx-4 my-1 text-silver-500 font-semibold"}
         >
           Don't have an account?
         </NavLink>
