@@ -47,7 +47,7 @@ function SignIn() {
   };
 
   return (
-    <div className="flex flex-col justify-center h-screen">
+    <div className="flex flex-col justify-center h-screen p-5">
       <h1 className="text-5xl font-black text-sunflower-500 mx-4 my-3">
         Sign In
       </h1>
@@ -61,7 +61,7 @@ function SignIn() {
           name="email"
           id="email"
           onChange={emailHandler}
-          className="bg-wetasphalt-500 text-clouds-500 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-clouds-500 mx-4 my-2 p-3 rounded-md w-1/2"
         />
         <input
           placeholder="Password"
@@ -69,7 +69,7 @@ function SignIn() {
           name="password"
           id="password"
           onChange={passwordHandler}
-          className="bg-wetasphalt-500 text-clouds-500 mx-4 my-2 p-3 rounded-md w-3/4"
+          className="bg-wetasphalt-500 text-clouds-500 mx-4 my-2 p-3 rounded-md w-1/2"
         />
         <NavLink
           to="/register"
