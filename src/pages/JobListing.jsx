@@ -44,6 +44,12 @@ function JobListing() {
         >
           Projects
         </NavLink>
+        <NavLink
+          to="/profile"
+          className={"text-wetasphalt-500 font-black text-5xl p-3 mx-3"}
+        >
+          Profile
+        </NavLink>
       </div>
       <SimpleGrid
         paddingTop={"5"}

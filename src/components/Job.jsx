@@ -37,12 +37,6 @@ function Job({ company, role, stipend, link, likes, dislikes, created_at }) {
             <a className="font-bold text-silver-500" href={link}>
               Visit Site
             </a>
-            <button className="font-semibold text-silver-500">
-              {likes} 👍
-            </button>
-            <button className="font-semibold text-silver-500">
-              {dislikes} 👎
-            </button>
           </div>
         </CardFooter>
       </Card>

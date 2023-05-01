@@ -47,9 +47,18 @@ function Projects() {
         >
           Latest Jobs
         </NavLink>
-        <h1 className="text-sunflower-500 font-black text-5xl p-3 mx-3">
+        <NavLink
+          to="/projects"
+          className={"text-sunflower-500 font-black text-5xl p-3 mx-3"}
+        >
           Projects
-        </h1>
+        </NavLink>
+        <NavLink
+          to="/profile"
+          className={"text-wetasphalt-500 font-black text-5xl p-3 mx-3"}
+        >
+          Profile
+        </NavLink>
       </div>
       <button
         onClick={() => {
@@ -80,75 +89,7 @@ function Projects() {
           />
         ))}
       </SimpleGrid>
-      {modalVisible && <Modal toggleModal={toggleModal}/>}
-      {/* <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <h1 className="text-4xl font-bold text-clouds-500 p-5">Add Project</h1>
-          <ModalCloseButton />
-          <ModalBody>
-            <form>
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                  placeholder="Project Name"
-                  className="shadow appearance-none border mb-2 rounded w-full py-2 px-3 text-clouds-500 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                <input
-                  type="text"
-                  name="techstack"
-                  id="techstack"
-                  onChange={(e) => {
-                    setTechStack(e.target.value);
-                  }}
-                  placeholder="Tech stack used"
-                  className="shadow appearance-none border my-2 rounded w-full py-2 px-3 text-clouds-500 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                <input
-                  type="text"
-                  name="desc"
-                  id="desc"
-                  onChange={(e) => {
-                    setDesc(e.target.value);
-                  }}
-                  placeholder="Brief Description"
-                  className="shadow appearance-none border my-2 rounded w-full py-2 px-3 text-clouds-500 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                <input
-                  type="text"
-                  name="link"
-                  id="link"
-                  onChange={(e) => {
-                    setLink(e.target.value);
-                  }}
-                  placeholder="Live Link"
-                  className="shadow appearance-none border my-2 rounded w-full py-2 px-3 text-clouds-500 leading-tight focus:outline-none focus:shadow-outline"
-                />
-                <input
-                  type="text"
-                  name="github"
-                  id="github"
-                  onChange={(e) => {
-                    setGithub(e.target.value);
-                  }}
-                  placeholder="Github"
-                  className="shadow appearance-none border my-2 rounded w-full py-2 px-3 text-clouds-500 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-            </form>
-          </ModalBody>
-          <ModalFooter>
-            <button className="bg-sunflower-500 font-semibold p-3 rounded-md" onClick={submitHandler}>
-              Submit
-            </button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal> */}
+      {modalVisible && <Modal toggleModal={toggleModal} />}
     </div>
   );
 }
