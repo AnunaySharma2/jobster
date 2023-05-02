@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import Project from "../components/Project";
+import { SimpleGrid, useToast } from "@chakra-ui/react";
 
 function Profile() {
+  const [projects, setProjects] = useState([]);
   const [email, setEmail] = useState("");
+
+  const toast = useToast();
 
   const session = supabase.auth.getSession();
   session
@@ -11,6 +16,30 @@ function Profile() {
       setEmail(data.data.session.user.email);
     })
     .catch((err) => console.log(err));
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
+  async function getProjects() {
+    try {
+      const { data, error } = await supabase
+        .from("Projects")
+        .select("*")
+      if (error) throw error;
+      if (data != null) {
+        setProjects(data);
+      }
+    } catch (error) {
+      toast({
+        title: "Error 🤔",
+        description: `${error}`,
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <div className="h-screen p-3">
@@ -27,16 +56,45 @@ function Profile() {
         >
           Projects
         </NavLink>
-        <h1
-          to="/profile"
-          className={"text-sunflower-500 font-black text-5xl p-3 mx-3"}
-        >
+        <h1 className={"text-sunflower-500 font-black text-5xl p-3 mx-3"}>
           Profile
         </h1>
       </div>
       <div>
-        <h1 className="text-emerland-500 p-3 mx-3 font-extrabold text-5xl">Hello, {email.split(".")[0].charAt(0).toUpperCase() + email.split(".")[0].slice(1)}</h1>
-        <h2 className="text-nephritis-500 px-3 py-1 mx-3 font-semibold text-2xl">Your registered email : {email}</h2>
+        <h1 className="text-carrot-500 p-3 mx-3 font-extrabold text-5xl">
+          Hello,{" "}
+          {email.split(".")[0].charAt(0).toUpperCase() +
+            email.split(".")[0].slice(1)}
+        </h1>
+        <h2 className="text-silver-500 px-3 py-2 mx-3 font-semibold text-xl">
+          Your registered email : {email}
+        </h2>
+      </div>
+      //TODO: Refractor projects to share data among sibling components using
+      Redux or useContext
+      <h1 className={"text-carrot-500 font-extrabold text-5xl p-3 mx-3"}>
+        Your Projects
+      </h1>
+      <div>
+        <SimpleGrid
+          paddingTop={"5"}
+          paddingLeft={"4"}
+          paddingRight={"4"}
+          paddingBottom={"5"}
+        >
+          {projects.filter(project => project.user_email === email).map((project) => (
+            <Project
+              key={project.id}
+              projectname={project.projectname}
+              techstack={project.techstack}
+              description={project.description}
+              livelink={project.livelink}
+              github={project.github}
+              email={project.user_email}
+              created_at={project.created_at}
+            />
+          ))}
+        </SimpleGrid>
       </div>
     </div>
   );
