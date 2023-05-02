@@ -14,6 +14,8 @@ function Register() {
   const toast = useToast();
   const navigate = useNavigate();
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@vitap\.ac\.in$/;
+
   const emailHandler = (event) => {
     setEmail(event.target.value);
   };
@@ -30,11 +32,9 @@ function Register() {
       .single();
 
     if (error) {
-      console.log(error);
       return false;
     }
     if (data) {
-      console.log(data);
       return true;
     }
 
@@ -62,6 +62,16 @@ function Register() {
   };
 
   const registerHandler = () => {
+    if (emailRegex.test(email) == false) {
+      toast({
+        title: "Invalid email 🤔",
+        description: `Only emails with domain name @vitap.ac.in can register`,
+        status: "error",
+        duration: 2000,
+        isClosable: false,
+      });
+      return;
+    }
     async function registerWithEmail() {
       try {
         const { data, error } = await supabase.auth.signUp({

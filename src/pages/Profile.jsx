@@ -7,7 +7,9 @@ function Profile() {
 
   const session = supabase.auth.getSession();
   session
-    .then((data) => setEmail(data.data.session.user.email))
+    .then((data) => {
+      setEmail(data.data.session.user.email);
+    })
     .catch((err) => console.log(err));
 
   return (
@@ -31,6 +33,10 @@ function Profile() {
         >
           Profile
         </h1>
+      </div>
+      <div>
+        <h1 className="text-emerland-500 p-3 mx-3 font-extrabold text-5xl">Hello, {email.split(".")[0].charAt(0).toUpperCase() + email.split(".")[0].slice(1)}</h1>
+        <h2 className="text-nephritis-500 px-3 py-1 mx-3 font-semibold text-2xl">Your registered email : {email}</h2>
       </div>
     </div>
   );
