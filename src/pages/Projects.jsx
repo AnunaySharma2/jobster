@@ -9,32 +9,51 @@ import Modal from "../components/Modal";
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [searchbox, setSearchBox] = useState("");
 
   const toast = useToast();
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [searchbox]);
 
   function toggleModal() {
     setModalVisible(!modalVisible);
   }
 
   async function getProjects() {
-    try {
-      const { data, error } = await supabase.from("Projects").select("*");
-      if (error) throw error;
-      if (data != null) {
-        setProjects(data);
+    if (searchbox.length === 0) {
+      try {
+        const { data, error } = await supabase.from("Projects").select("*");
+        if (error) throw error;
+        if (data != null) {
+          setProjects(data);
+        }
+      } catch (error) {
+        toast({
+          title: "Error 🤔",
+          description: `${error}`,
+          status: "error",
+          duration: 2500,
+          isClosable: true,
+        });
       }
-    } catch (error) {
-      toast({
-        title: "Error 🤔",
-        description: `${error}`,
-        status: "error",
-        duration: 2500,
-        isClosable: true,
-      });
+    }else if(searchbox.length>=2){
+      try {
+        const { data, error } = await supabase.from("Projects").select("*").ilike("techstack", searchbox);
+        if (error) throw error;
+        if (data != null) {
+          setProjects(data);
+        }
+      } catch (error) {
+        toast({
+          title: "Error 🤔",
+          description: `${error}`,
+          status: "error",
+          duration: 2500,
+          isClosable: true,
+        });
+      }
     }
   }
 
@@ -68,6 +87,16 @@ function Projects() {
       >
         Add project
       </button>
+      <div className="flex flex-row">
+        <input
+          type="text"
+          name="searchbox"
+          id="searchbox"
+          onChange={(e) => setSearchBox(e.target.value)}
+          placeholder="Search projects by tech stack"
+          className="mx-3 my-5 bg-midnightblue-900 p-3 text-lightwhite-100 rounded-md w-1/2"
+        />
+      </div>
       <SimpleGrid
         paddingTop={"5"}
         paddingLeft={"4"}

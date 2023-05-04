@@ -70,8 +70,6 @@ function Profile() {
           Your registered email : {email}
         </h2>
       </div>
-      //TODO: Refractor projects to share data among sibling components using
-      Redux or useContext
       <h1 className={"text-carrot-500 font-extrabold text-5xl p-3 mx-3"}>
         Your Projects
       </h1>
