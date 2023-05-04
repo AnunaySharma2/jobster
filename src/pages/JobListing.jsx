@@ -8,27 +8,46 @@ import { supabase } from "../supabaseClient";
 
 function JobListing() {
   const [jobs, setJobs] = useState([]);
+  const [searchbox, setSearchBox] = useState("");
 
   const toast = useToast();
   useEffect(() => {
     getJobs();
-  }, []);
+  }, [searchbox]);
 
   async function getJobs() {
-    try {
-      const { data, error } = await supabase.from("Jobs").select("*");
-      if (error) throw error;
-      if (data != null) {
-        setJobs(data);
+    if (searchbox.length === 0) {
+      try {
+        const { data, error } = await supabase.from("Jobs").select("*");
+        if (error) throw error;
+        if (data != null) {
+          setJobs(data);
+        }
+      } catch (error) {
+        toast({
+          title: "Error 🤔",
+          description: `${error}`,
+          status: "error",
+          duration: 2500,
+          isClosable: true,
+        });
       }
-    } catch (error) {
-      toast({
-        title: "Error 🤔",
-        description: `${error}`,
-        status: "error",
-        duration: 2500,
-        isClosable: true,
-      });
+    }else if(searchbox.length >= 2){
+      try {
+        const { data, error } = await supabase.from("Jobs").select("*").ilike("Role", searchbox);
+        if (error) throw error;
+        if (data != null) {
+          setJobs(data);
+        }
+      } catch (error) {
+        toast({
+          title: "Error 🤔",
+          description: `${error}`,
+          status: "error",
+          duration: 2500,
+          isClosable: true,
+        });
+      }
     }
   }
 
@@ -50,6 +69,16 @@ function JobListing() {
         >
           Profile
         </NavLink>
+      </div>
+      <div className="flex flex-row">
+        <input
+          type="text"
+          name="searchbox"
+          id="searchbox"
+          onChange={(e) => setSearchBox(e.target.value)}
+          placeholder="Search jobs by position"
+          className="mx-3 my-5 bg-midnightblue-900 p-3 text-lightwhite-100 rounded-md w-1/2"
+        />
       </div>
       <SimpleGrid
         paddingTop={"5"}
