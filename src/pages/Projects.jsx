@@ -38,7 +38,7 @@ function Projects() {
           isClosable: true,
         });
       }
-    }else if(searchbox.length>=2){
+    }else{
       try {
         const { data, error } = await supabase.from("Projects").select("*").ilike("techstack", searchbox);
         if (error) throw error;

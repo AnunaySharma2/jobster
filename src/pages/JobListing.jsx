@@ -32,7 +32,7 @@ function JobListing() {
           isClosable: true,
         });
       }
-    }else if(searchbox.length >= 2){
+    }else{
       try {
         const { data, error } = await supabase.from("Jobs").select("*").ilike("Role", searchbox);
         if (error) throw error;

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
+import Promotion from "../components/Promotion";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -85,6 +86,7 @@ function SignIn() {
           Sign In
         </button>
       </form>
+      <Promotion/>
     </div>
   );
 }

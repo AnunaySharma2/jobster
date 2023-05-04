@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import Promotion from "../components/Promotion";
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -172,6 +173,7 @@ function Register() {
           Register
         </button>
       </form>
+      <Promotion/>
     </div>
   );
 }
