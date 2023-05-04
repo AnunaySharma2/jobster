@@ -12,42 +12,49 @@ function JobListing() {
 
   const toast = useToast();
   useEffect(() => {
-    getJobs();
+    if (searchbox.length === 0) {
+      getJobs();
+    } else if(searchbox.length >= 2) {
+      getCustomJobs();
+    }
   }, [searchbox]);
 
+  async function getCustomJobs() {
+    try {
+      const { data, error } = await supabase
+        .from("Jobs")
+        .select()
+        .ilike("Role", `%${searchbox}%`);
+      if (error) throw error;
+      if (data != null) {
+        setJobs(data);
+      }
+    } catch (error) {
+      toast({
+        title: "Error 🤔",
+        description: `${error}`,
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
+    }
+  }
+
   async function getJobs() {
-    if (searchbox.length === 0) {
-      try {
-        const { data, error } = await supabase.from("Jobs").select("*");
-        if (error) throw error;
-        if (data != null) {
-          setJobs(data);
-        }
-      } catch (error) {
-        toast({
-          title: "Error 🤔",
-          description: `${error}`,
-          status: "error",
-          duration: 2500,
-          isClosable: true,
-        });
+    try {
+      const { data, error } = await supabase.from("Jobs").select("*");
+      if (error) throw error;
+      if (data != null) {
+        setJobs(data);
       }
-    }else{
-      try {
-        const { data, error } = await supabase.from("Jobs").select("*").ilike("Role", searchbox);
-        if (error) throw error;
-        if (data != null) {
-          setJobs(data);
-        }
-      } catch (error) {
-        toast({
-          title: "Error 🤔",
-          description: `${error}`,
-          status: "error",
-          duration: 2500,
-          isClosable: true,
-        });
-      }
+    } catch (error) {
+      toast({
+        title: "Error 🤔",
+        description: `${error}`,
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
     }
   }
 

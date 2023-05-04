@@ -14,46 +14,53 @@ function Projects() {
   const toast = useToast();
 
   useEffect(() => {
-    getProjects();
+    if (searchbox.length === 0) {
+      getProjects();
+    } else if (searchbox.length >= 2) {
+      getCustomProjects();
+    }
   }, [searchbox]);
 
   function toggleModal() {
     setModalVisible(!modalVisible);
   }
 
+  async function getCustomProjects() {
+    try {
+      const { data, error } = await supabase
+        .from("Projects")
+        .select("*")
+        .ilike("techstack", `%${searchbox}%`);
+      if (error) throw error;
+      if (data != null) {
+        setProjects(data);
+      }
+    } catch (error) {
+      toast({
+        title: "Error 🤔",
+        description: `${error}`,
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
+    }
+  }
+
   async function getProjects() {
-    if (searchbox.length === 0) {
-      try {
-        const { data, error } = await supabase.from("Projects").select("*");
-        if (error) throw error;
-        if (data != null) {
-          setProjects(data);
-        }
-      } catch (error) {
-        toast({
-          title: "Error 🤔",
-          description: `${error}`,
-          status: "error",
-          duration: 2500,
-          isClosable: true,
-        });
+    try {
+      const { data, error } = await supabase.from("Projects").select("*");
+      if (error) throw error;
+      if (data != null) {
+        setProjects(data);
       }
-    }else{
-      try {
-        const { data, error } = await supabase.from("Projects").select("*").ilike("techstack", searchbox);
-        if (error) throw error;
-        if (data != null) {
-          setProjects(data);
-        }
-      } catch (error) {
-        toast({
-          title: "Error 🤔",
-          description: `${error}`,
-          status: "error",
-          duration: 2500,
-          isClosable: true,
-        });
-      }
+    } catch (error) {
+      toast({
+        title: "Error 🤔",
+        description: `${error}`,
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
     }
   }
 
