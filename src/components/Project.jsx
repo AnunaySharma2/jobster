@@ -37,7 +37,7 @@ function Project({
         </CardBody>
         <CardFooter>
           <div className="flex flex-row justify-between p-2 w-full">
-            {livelink == null && <p>Link to project : Not available</p>}
+            {livelink == null && <p className="text-clouds-500 font-extralight">Link to project : Not available</p>}
             {livelink == null || (
               <a
                 target="_blank"
@@ -47,12 +47,16 @@ function Project({
                 Link to Project
               </a>
             )}
-            {github == null && <p>Github : Not available</p>}
-            {github == null || (
-              <p className="px-2 text-lg text-clouds-500 font-light">
-                {getCreatedDate(created_at)}
-              </p>
+            {github == null && (
+              <p className="text-clouds-500 font-extralight">Github : Not available</p>
             )}
+            {github == null || <a
+                target="_blank"
+                className="font-bold text-silver-500"
+                href={github}
+              >
+                Github
+              </a>}
           </div>
         </CardFooter>
       </Card>
