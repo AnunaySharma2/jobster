@@ -12,7 +12,7 @@ function Modal(props) {
 
   const session = supabase.auth.getSession();
   session
-    .then((data) => setEmail(data.data.session.user.email.split("@")[0]))
+    .then((data) => setEmail(data.data.session.user.email))
     .catch((err) => console.log(err));
 
   const submitHandler = async () => {

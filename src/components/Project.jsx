@@ -31,27 +31,28 @@ function Project({
         </CardHeader>
         <CardBody>
           <p className="px-2 py-1 text-lg text-clouds-500 ">{description}</p>
-          <p className="px-2 py-1 font-semibold text-concrete-500">Created by {email}</p>
+          <p className="px-2 py-1 font-semibold text-concrete-500">
+            Created by {email}
+          </p>
         </CardBody>
         <CardFooter>
           <div className="flex flex-row justify-between p-2 w-full">
-            <a
-              target="_blank"
-              className="font-bold text-silver-500"
-              href={livelink}
-            >
-              Link to Project
-            </a>
-            <a
-              target="_blank"
-              className="font-bold text-silver-500"
-              href={github}
-            >
-              Github
-            </a>
-            <p className="px-2 text-lg text-clouds-500 font-light">
-              {getCreatedDate(created_at)}
-            </p>
+            {livelink == null && <p>Link to project : Not available</p>}
+            {livelink == null || (
+              <a
+                target="_blank"
+                className="font-bold text-silver-500"
+                href={livelink}
+              >
+                Link to Project
+              </a>
+            )}
+            {github == null && <p>Github : Not available</p>}
+            {github == null || (
+              <p className="px-2 text-lg text-clouds-500 font-light">
+                {getCreatedDate(created_at)}
+              </p>
+            )}
           </div>
         </CardFooter>
       </Card>

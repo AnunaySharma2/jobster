@@ -23,9 +23,7 @@ function Profile() {
 
   async function getProjects() {
     try {
-      const { data, error } = await supabase
-        .from("Projects")
-        .select("*")
+      const { data, error } = await supabase.from("Projects").select("*");
       if (error) throw error;
       if (data != null) {
         setProjects(data);
@@ -33,6 +31,25 @@ function Profile() {
     } catch (error) {
       toast({
         title: "Error 🤔",
+        description: `${error}`,
+        status: "error",
+        duration: 2500,
+        isClosable: true,
+      });
+    }
+  }
+
+  async function deleteProject(uuid) {
+    try {
+      const { data, error } = await supabase
+        .from("Projects")
+        .delete()
+        .eq("id", uuid);
+      if (error) throw error;
+      console.log(data);
+    } catch (error) {
+      toast({
+        title: "Could not delete 🤔",
         description: `${error}`,
         status: "error",
         duration: 2500,
@@ -80,18 +97,36 @@ function Profile() {
           paddingRight={"4"}
           paddingBottom={"5"}
         >
-          {projects.filter(project => project.user_email === email).map((project) => (
-            <Project
-              key={project.id}
-              projectname={project.projectname}
-              techstack={project.techstack}
-              description={project.description}
-              livelink={project.livelink}
-              github={project.github}
-              email={project.user_email}
-              created_at={project.created_at}
-            />
-          ))}
+          {projects.filter((project) => project.user_email === email).length ===
+            0 && (
+            <div className="text-silver-500 px-3 font-semibold text-xl">
+              You haven't added any projects yet!
+            </div>
+          )}
+          {projects
+            .filter((project) => project.user_email === email)
+            .map((project) => (
+              <div key={project.id}>
+                <Project
+                  key={project.id}
+                  projectname={project.projectname}
+                  techstack={project.techstack}
+                  description={project.description}
+                  livelink={project.livelink}
+                  github={project.github}
+                  email={project.user_email}
+                  created_at={project.created_at}
+                />
+                <button
+                  onClick={() => {
+                    deleteProject(`${project.id}`);
+                  }}
+                  className="bg-alizin-500 p-2 my-4 text-clouds-500 rounded-md"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
         </SimpleGrid>
       </div>
     </div>
